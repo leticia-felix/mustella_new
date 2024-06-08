@@ -43,20 +43,19 @@
                                 </div>
                                 
                                 <div class="ml-3rem md:ml-4 text-bold sm:mt-0 md:mt-0 lg:mt-0 xl:mt-0 mt-2 text-center">
-                                    <div class="sm:text-left md:text-left lg:text-left xl:text-left text-center font-bold text-2xl">{{ Auth::user()->name }}</div>
+
+                                    <div class="sm:text-left md:text-left lg:text-left xl:text-left text-center font-bold text-2xl md:mt-5">{{ $user->name }}</div>
 
                                     <div class="text-semibold text-sm text-gray sm:text-left md:text-left lg:text-left xl:text-left text-center">
-                                        <span>@</span>{{ Auth::user()->username }} 
-                                      </div>
-
-                                    <div class="text-semibold text-sm text-gray sm:text-left md:text-left lg:text-left xl:text-left text-center">
-                                            {{ $postCount }} Postagens 
+                                      <span>@</span>{{ $user->username }} 
                                     </div>
 
+                                    <div class="text-semibold text-sm text-gray sm:text-left md:text-left lg:text-left xl:text-left text-center mt-2">
+                                        {{ $user->posts->count() }} Postagens 
+                                    </div>
+                                    
                                     <a class="text-semibold text-sm text-gray sm:text-left md:text-left lg:text-left xl:text-left text-center" href="{{ route('profile.edit') }}">Editar perfil</a>
                                     
-                                    <a href="{{ route('favorites.index') }}" class="btn btn-primary">Ver Posts Favoritados</a>
-
                                 </div>
                             </div>
                         </div>
@@ -75,7 +74,7 @@
                                         <div class="w-10 h-10 bg-orange rounded-full"></div>
                                         <div>
                                             <div class="ml-2 text-white">
-                                                {{$post->user->name}}
+                                                {{$post->user->username}}
                                             </div>
 
 
@@ -132,8 +131,6 @@
                                     
                                     <div class="flex justify-between">
                                         <p class="text-base php artisan storage:link text-orange">{{ $post->caption }}</p>
-                                        
-                            
                                     </div>
 
 

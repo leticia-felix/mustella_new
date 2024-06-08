@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Post;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:20'],
+            'username' => ['required', 'string', 'max:20', 'unique:'.User::class ],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -48,5 +49,20 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         return redirect(route('mustella', absolute: false));
+        
     }
+
+
+
+
+        public function showPosts($id)
+    {
+         $user = User::findOrFail($id);
+        $posts = $user->posts()->latest()->get(); // Assuming you have a relationship set up for posts
+
+        return view('profile-other-user', compact('user', 'posts', ));
+    }
+
+
+
 }

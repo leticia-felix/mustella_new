@@ -19,6 +19,23 @@
                             </p>
                         </div>
                         <img class="w-full text-purple rounded-xl" src="{{ asset('storage/' . $post->image_path) }}" alt="{{ $post->title }}">
+
+
+
+
+
+                        @if (Auth::user()->favorites->contains($post->id))
+                            <form action="{{ route('posts.favorite', $post) }}" method="POST">
+                                @csrf
+                                <button type="submit">Desfavoritar</button>
+                            </form>
+                        @else
+                            <form action="{{ route('posts.favorite', $post) }}" method="POST">
+                                @csrf
+                                <button type="submit">Favoritar</button>
+                            </form>
+                        @endif
+
                     </div>
                 </div>
             </div>

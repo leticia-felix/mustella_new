@@ -17,13 +17,15 @@ class PostController extends Controller
         $posts = Post::with('user')->get();
         return view('mustella-index', compact('posts'));
     }
+  
 
     public function perfil()
     {
 
-
         $user = Auth::user();
-        $postCount = $user->posts()->count();
+        $userId = $user->id;
+        $postCount = Post::where('user_id', $userId)->count();
+      
 
         $posts = Post::where('user_id',Auth::id())->get();
         
@@ -94,44 +96,32 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(post $post)
-    {
-        //
+    public function edit($id) {
+
+        $post = Post::findOrFail($id);
+        return view('posts-edit', compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, post $post)
-    {
-       
-        $request->validate([
-            'profile_photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        ]);
-
-        $user = Auth::user();
-
-        if ($request->hasFile('profile_photo')) {
-            // Deletar a foto antiga se existir
-            if ($user->profile_photo) {
-                Storage::delete('public/' . $user->profile_photo);
-            }
-
-            // Armazenar a nova foto
-            $path = $request->file('profile_photo')->store('profile_photos', 'public');
-            $user->profile_photo = $path;
-        }
-
-        $user->save();
-
-        return redirect()->route('profile.show')->with('success', 'Perfil atualizado com sucesso.');
+    public function update(Request $request, $id){
+        $post = Post::findOrFail($id);
+        $post->title = $request->input('title');
+        $post->caption = $request->input('caption');
+        $post->save();
+        return redirect()->route('perfil', $post->id)->with('success', 'Post atualizado com sucesso!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(post $post)
+    public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+       
+
+        return redirect('/perfil')->with('success', 'Post deleted!');
     }
 }

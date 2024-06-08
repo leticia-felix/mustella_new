@@ -7,9 +7,12 @@
 
                 <!-- Navigation Links -->
                 <div class="flex justify-center items-center space-x-8 sm:-my-px sm:ms-10 sm:flex text-white">
-                    <x-nav-link :href="route('mustella')" :active="request()->routeIs('mustella')">
-                        <img class="w-10 h-10 min-w-10 min-h-10" src="{{ asset('imagens/seta.png') }}" alt="seta">
-                    </x-nav-link>
+                    
+                       
+                   <a href="{{ url()->previous() }}">
+
+                    <img class="w-10 h-10 min-w-10 min-h-10" src="{{ asset('imagens/seta.png') }}" alt="seta">
+                   </a>
                 </div>
             </div>
 

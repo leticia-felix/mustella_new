@@ -36,36 +36,14 @@
                             </x-nav-link>
                         </div>
 
-                        <div class="mb-3 md:ml-0 ml-10 flex justify-center">
-                            <div class="md:flex md:items-center ">
-                                <div class="w-6rem h-6rem ml-4rem bg-orange rounded-full">
-                                    <!-- circuloPerfil -->
-                                </div>
-                                
-                                <div class="ml-3rem md:ml-4 text-bold sm:mt-0 md:mt-0 lg:mt-0 xl:mt-0 mt-2 text-center">
-                                    <div class="sm:text-left md:text-left lg:text-left xl:text-left text-center font-bold text-2xl">{{ Auth::user()->name }}</div>
-
-                                    <div class="text-semibold text-sm text-gray sm:text-left md:text-left lg:text-left xl:text-left text-center">
-                                        <span>@</span>{{ Auth::user()->username }} 
-                                      </div>
-
-                                    <div class="text-semibold text-sm text-gray sm:text-left md:text-left lg:text-left xl:text-left text-center">
-                                            {{ $postCount }} Postagens 
-                                    </div>
-
-                                    <a class="text-semibold text-sm text-gray sm:text-left md:text-left lg:text-left xl:text-left text-center" href="{{ route('profile.edit') }}">Editar perfil</a>
-                                    
-                                    <a href="{{ route('favorites.index') }}" class="btn btn-primary">Ver Posts Favoritados</a>
-
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="md:px-20rem px-5 md:mt-3rem mt-7rem grid md:grid-cols-3 gap-4">
                         
+
+                @if ($favorites->count() > 0)
                         @foreach($posts as $post)
                             <div class="max-w-sm rounded overflow-hidden shadow-lg sm:m-4">
 
@@ -143,6 +121,12 @@
                                 <img class="w-full h-20rem text-purplle rounded-xl" src="{{ asset('storage/' . $post->image_path) }}" alt="{{ $post->title }}">
                             </div>
                         @endforeach
+
+                        {{ $favorites->links() }}
+                        @else
+                            <p>Você não possui posts favoritados.</p>
+                        @endif
+                        
                     </div>
                 
             </main>

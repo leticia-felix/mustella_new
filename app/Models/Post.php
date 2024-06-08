@@ -20,4 +20,11 @@ public function posts()
 {
     return $this->hasMany('App\\Post');
 }
+
+public function favoritedBy()
+{
+    return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
+}
+
+
 }

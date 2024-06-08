@@ -22,8 +22,10 @@ export default {
 
             spacing: {
                 '3rem': '2.3rem',
+                '4rem': '3rem',
                 '5rem': '4rem',
                 '6rem': '5rem',
+                '7rem': '7rem',
                 '10rem': '10rem',
                 '20rem': '18rem',
                 '22rem': '22rem',
@@ -41,6 +43,7 @@ export default {
         'purplle':'#563274',
         'gray':'#D9D9D9',
         'white':'#ffffff',
+        'black':'#000000',
         'red': '#c1121f',
         'cinza-escuro':'#202C3D',
 
