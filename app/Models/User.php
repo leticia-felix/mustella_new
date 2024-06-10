@@ -21,6 +21,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'username',
+        'profile_photo_path', 
+        'bio',
     ];
 
     /**
@@ -50,8 +52,11 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     return $this->hasMany(Post::class);
 }
+
 public function favorites()
 {
-    return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
+    return $this->belongsToMany(Post::class, 'favorites')
+                ->withTimestamps();
 }
+
 }

@@ -64,7 +64,7 @@ class PostController extends Controller
                  'user_id' => Auth::id(), // Atribui o ID do usuário autenticado
              ]);
 
-             return redirect()->route('mustella')->with('success', 'Post created successfully.');
+             return redirect()->route('mustella')->with('MensagemCriadoPost', 'Seu post foi criado com sucesso.');
          } else {
              return back()->withErrors(['image' => 'Image upload failed.']);
          }
@@ -106,10 +106,17 @@ class PostController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id){
+
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'caption' => 'required|string',
+        ]);
+
         $post = Post::findOrFail($id);
         $post->title = $request->input('title');
         $post->caption = $request->input('caption');
         $post->save();
+        
         return redirect()->route('perfil', $post->id)->with('success', 'Post atualizado com sucesso!');
     }
 
@@ -122,6 +129,6 @@ class PostController extends Controller
         $post->delete();
        
 
-        return redirect('/perfil')->with('success', 'Post deleted!');
+        return redirect('/perfil')->with('MensagemDeletePost', 'Seu post foi excluído!');
     }
 }

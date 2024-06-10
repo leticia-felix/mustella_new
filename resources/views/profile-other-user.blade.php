@@ -23,6 +23,8 @@
             
             <x-addPost></x-addPost>
 
+            <x-msgDeletePost></x-msgDeletePost>
+
             
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16">
@@ -31,31 +33,29 @@
 
                         <!-- Navigation Links -->
                         <div class="flex justify-center items-center space-x-8 sm:-my-px sm:ms-10 sm:flex text-white">
-                            <x-nav-link :href="route('mustella')" :active="request()->routeIs('mustella')">
+                            <a href="{{ url()->previous() }}">
                                 <img class="w-10 h-10 min-w-10 min-h-10" src="{{ asset('imagens/seta.png') }}" alt="seta">
-                            </x-nav-link>
+                            </a>
                         </div>
 
                         <div class="mb-3 md:ml-0 ml-10 flex justify-center">
                             <div class="md:flex md:items-center ">
-                                <div class="w-6rem h-6rem ml-4rem bg-orange rounded-full">
-                                    <!-- circuloPerfil -->
-                                </div>
+                               
+                                <img class="w-6rem h-6rem ml-4rem rounded-full"src="https://ui-avatars.com/api/?name={{ $user->name }}&background=FC9A03&color=ffffff"  alt="Avatar">
                                 
-                                <div class="ml-3rem md:ml-4 text-bold sm:mt-0 md:mt-0 lg:mt-0 xl:mt-0 mt-2 text-center">
-
-                                    <div class="sm:text-left md:text-left lg:text-left xl:text-left text-center font-bold text-2xl md:mt-5">{{ $user->name }}</div>
+                                <div class="ml-4 md:ml-4 text-bold sm:mt-0 md:mt-0 lg:mt-0 xl:mt-0 mt-2 text-center">
+                                    <div class="sm:text-left md:text-left lg:text-left xl:text-left text-center font-bold text-2xl">{{ $user->name }}</div>
 
                                     <div class="text-semibold text-sm text-gray sm:text-left md:text-left lg:text-left xl:text-left text-center">
-                                      <span>@</span>{{ $user->username }} 
+                                        <span>@</span>{{ $user->username }} 
+                                      </div>
+
+                                    <div class="text-semibold text-sm text-gray sm:text-left md:text-left lg:text-left xl:text-left text-center">
+                                            {{ $user->posts->count() }} Postagens 
                                     </div>
 
-                                    <div class="text-semibold text-sm text-gray sm:text-left md:text-left lg:text-left xl:text-left text-center mt-2">
-                                        {{ $user->posts->count() }} Postagens 
-                                    </div>
                                     
-                                    <a class="text-semibold text-sm text-gray sm:text-left md:text-left lg:text-left xl:text-left text-center" href="{{ route('profile.edit') }}">Editar perfil</a>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -63,61 +63,19 @@
                 </div>
             </div>
 
-            <div class="md:px-20rem px-5 md:mt-3rem mt-7rem grid md:grid-cols-3 gap-4">
+            <div class="md:px-7rem px-5 md:mt-3rem mt-10rem grid md:grid-cols-3 gap-4">
                         
                         @foreach($posts as $post)
-                            <div class="max-w-sm rounded overflow-hidden shadow-lg sm:m-4">
+                            <div class="shadow-none max-w-sm rounded overflow-hidden shadow-lg sm:m-4">
 
                                 <div class="mb-3 md:mt-0 mt-4">
                                     <div class="flex items-center">
                                         <!-- circuloPerfil -->
-                                        <div class="w-10 h-10 bg-orange rounded-full"></div>
-                                        <div>
-                                            <div class="ml-2 text-white">
+                                        <img class="w-10 h-10 rounded-full"src="https://ui-avatars.com/api/?name={{ $post->user->name }}&background=FC9A03&color=ffffff"  alt="Avatar">
+                                        <div class="flex">
+                                            <div class="ml-2 text-white flex items-center">
                                                 {{$post->user->username}}
                                             </div>
-
-
-                                        <div class="text-purplle flex-grow">
-                                           
-                                            <x-dropdown align="left" width="48">
-                                                <x-slot name="trigger">
-                                                    <button>
-                                                        <img class="w-5 h-5 m-4 min-w-5 min-h-5" src="{{ asset('imagens/points.png') }}" alt="seta">
-                                                    </button>
-                                                </x-slot>
-                            
-                                                <x-slot name="content">
-                            
-                                                    <x-dropdown-link >
-                                                        <form action="{{ route('posts.destroy', $post->id) }}" method="post">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button class="text-orange font-semibold"type="submit" onclick="return confirm('Tem certeza que deseja deletar este post?')">Excluir</button>
-                                                        </form>
-                                                    </x-dropdown-link>
-
-                                                    <x-dropdown-link class="">
-                                                        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary">Editar</a>
-
-                                                    </x-dropdown-link>
-                            
-                                                    
-                                                </x-slot>
-                                               
-                                            </x-dropdown>
-
-
-                                        </div>
-
-
-
-
-
-
-
-                                            
-
 
 
 
@@ -131,6 +89,8 @@
                                     
                                     <div class="flex justify-between">
                                         <p class="text-base php artisan storage:link text-orange">{{ $post->caption }}</p>
+                                        
+                            
                                     </div>
 
 

@@ -15,7 +15,7 @@ class FavoriteController extends Controller
         if ($user->favorites()->where('post_id', $post->id)->exists()) {
             $user->favorites()->detach($post->id);
         } else {
-            $user->favorites()->attach($post->id);
+            $user->favorites()->attach($post->id, ['created_at' => now(), 'updated_at' => now()]);
         }
 
         return redirect()->back();
@@ -24,8 +24,9 @@ class FavoriteController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $favorites = $user->favorites()->paginate(10);
+        $favorites = $user->favorites()->get();
 
         return view('favorites-index', compact('favorites'));
     }
 }
+

@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-
+use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\PostController;
@@ -40,6 +40,10 @@ Route::middleware('auth')->group(function () {
 
 
 
+
+
+
+
     Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
     Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
@@ -59,7 +63,7 @@ Route::middleware('auth')->group(function () {
    
     Route::get('/search', [PostController::class, 'search'])->name('posts.search');
 
-    Route::post('/posts/{id}/favorite', [FavoriteController::class, 'toggleFavorite'])->name('posts.favorite');
+    Route::post('/posts/{post}/favorite', [FavoriteController::class, 'toggleFavorite'])->name('posts.favorite');
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
 
 });

@@ -24,7 +24,7 @@
                                 <div class="mb-3">
                                     <div class="flex items-center">
                                         <!-- circuloPerfil -->
-                                        <div class="w-10 h-10 bg-orange rounded-full"></div>
+                                        <img class="w-10 h-10 rounded-full"src="https://ui-avatars.com/api/?name={{ $post->user->name }}&background=FC9A03&color=ffffff"  alt="Avatar">
 
                                         <a href="{{ route('user.profile', $post->user->id) }}">
                                             <div class="ml-2 text-white">
@@ -32,7 +32,7 @@
                                             </div>
                                         </a>
                                     </div>
-                                    <div class="font-bold text-xl mb-2 text-white">
+                                    <div class="font-bold text-xl  mt-2 text-white">
                                         <a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a>
                                     </div>
                                     <p class=" text-base php artisan storage:link text-orange

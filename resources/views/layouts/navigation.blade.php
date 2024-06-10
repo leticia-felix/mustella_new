@@ -46,6 +46,10 @@
                             {{ __('Configurações') }}
                         </x-dropdown-link>
 
+                        <x-dropdown-link :href="route('mustella')">
+                            {{ __('Tela Inicial') }}
+                        </x-dropdown-link>
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -72,18 +76,11 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden text-white sm:hidden">
 
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('mustella')" :active="request()->routeIs('mustella')">
-                {{ __('mustella') }}
-            </x-responsive-nav-link>
-        </div>
+       
 
         <!-- Responsive Settings Options -->
         <div class="pt-1 pb-1 border-none border-gray-200">
-            <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-            </div>
+            
 
             <div class="space-y-1">
                 <x-responsive-nav-link :href="route('perfil')">
@@ -95,6 +92,13 @@
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Configurações') }}
                 </x-responsive-nav-link>
+            </div>
+
+            <div class="mt-1 mb-1 space-y-1">
+                <x-responsive-nav-link :href="route('mustella')">
+                    {{ __('Tela Inicial') }}
+                </x-responsive-nav-link>
+            </div>
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">

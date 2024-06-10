@@ -16,7 +16,7 @@
                                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                                     <p class="mt-4 text-center text-semibold text-sm text-gray uppercase">Clique ou arraste sua imagem</p>
                                 </div>
-                                <input type="file" id="image" name="image" required class="hidden">
+                                <input required type="file" id="image" name="image" required class="hidden">
                             </label>
 
                             <img id="output"/>
@@ -66,14 +66,14 @@
                                 <textarea
                                 name="title"
                                 id="title"
-                                class="bg-purplle border-none rounded-xl placeholder-basic-gray mt-2 h-20 w-full focus:ring-0 resize-none" placeholder="Título"></textarea>
+                                class="bg-purplle border-none rounded-xl placeholder-basic-gray mt-2 h-20 w-full focus:ring-0 resize-none" placeholder="Título" required ></textarea>
                             </div>
                             <div>
                                 <label for="caption">Legenda:</label>
                                 <textarea
                                 name="caption"
                                 id="caption"
-                                class="bg-purplle border-none rounded-xl placeholder-basic-gray mt-2 h-20 w-full focus:ring-0 resize-none" placeholder="Legenda"></textarea>
+                                class="bg-purplle border-none rounded-xl placeholder-basic-gray mt-2 h-20 w-full focus:ring-0 resize-none" placeholder="Legenda" required ></textarea>
                             </div>
 
                         </div>
