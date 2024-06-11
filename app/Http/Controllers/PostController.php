@@ -14,6 +14,7 @@ class PostController extends Controller
 
     public function index()
     {
+        $posts = Post::with('favorites')->get();
         $posts = Post::with('user')->get();
         return view('mustella-index', compact('posts'));
     }
@@ -50,7 +51,7 @@ class PostController extends Controller
      {
          $request->validate([
              'title' => 'required|string|max:255',
-             'caption' => 'required|string',
+             'caption' => 'nullable|string|max:500',
              'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
          ]);
 
@@ -90,6 +91,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        $posts = Post::with('favorites')->get();
         return view('posts-show', compact('post'));
     }
 
@@ -109,7 +111,7 @@ class PostController extends Controller
 
         $request->validate([
             'title' => 'required|string|max:255',
-            'caption' => 'required|string',
+            'caption' => 'nullable|string|max:500',
         ]);
 
         $post = Post::findOrFail($id);

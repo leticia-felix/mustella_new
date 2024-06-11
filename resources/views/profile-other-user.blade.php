@@ -87,11 +87,7 @@
                                         <a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a>
                                     </div>
                                     
-                                    <div class="flex justify-between">
-                                        <p class="text-base php artisan storage:link text-orange">{{ $post->caption }}</p>
-                                        
-                            
-                                    </div>
+                                   
 
 
 

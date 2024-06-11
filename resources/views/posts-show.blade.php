@@ -7,12 +7,14 @@
                         <div class="mb-3">
                             <div class="flex items-center">
                                 <img class="w-12 h-12 rounded-full"src="https://ui-avatars.com/api/?name={{ $post->user->name }}&background=FC9A03&color=ffffff"  alt="Avatar">
-                                <div class="ml-2 text-white">
-                                    {{ $post->user->name }}
-                                </div>
+                                <a href="{{ route('user.profile', $post->user->id) }}">
+                                    <div class="ml-2 text-white">
+                                        {{$post->user->username}}
+                                    </div>
+                                </a>
                             </div>
 
-                            <div class="font-bold text-xl mb-2 text-white">
+                            <div class="font-bold text-xl  mt-2 text-white">
                                 {{ $post->title }}
                             </div>
 
@@ -27,11 +29,12 @@
 
                                 <button type="submit"  class="text-orange rounded-xl mr-2" >  
                                     @if(Auth::user()->favorites()->where('post_id', $post->id)->exists())
-                                    <img src="{{ asset('imagens/unfavorite.png') }}" class="h-10" alt="Favoritar">
-                          
+                                    
+                                    <div class="flex justify-center items-center text-xl"> <span>{{ $post->favorites->count() }}</span><img alt="favoritar post"src="{{ asset('imagens/unfavorite.png') }}" class="h-10" alt="Favoritar">
+                                    </div>
                                     @else
                                
-                                    <img src="{{ asset('imagens/favorite.png') }}" class="h-10" alt="Desfavoritar">
+                                   <div class="flex justify-center items-center text-xl"> <span>{{ $post->favorites->count() }}</span><img alt="favoritar post"src="{{ asset('imagens/favorite.png') }}" class="h-10" alt="Desfavoritar"></div>
                                     @endif
 
                                 </button>    

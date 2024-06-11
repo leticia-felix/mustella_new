@@ -62,18 +62,18 @@
                         <!-- título e legenda -->
                         <div class="flex flex-col w-full md:w-2/3 space-y-4 mt-4 md:mt-0 md:mt-10">
                             <div>
-                                <label for="title">Title:</label>
+                                <label for="title">Título*</label>
                                 <textarea
                                 name="title"
                                 id="title"
                                 class="bg-purplle border-none rounded-xl placeholder-basic-gray mt-2 h-20 w-full focus:ring-0 resize-none" placeholder="Título" required ></textarea>
                             </div>
                             <div>
-                                <label for="caption">Legenda:</label>
+                                <label for="caption">Legenda</label>
                                 <textarea
                                 name="caption"
                                 id="caption"
-                                class="bg-purplle border-none rounded-xl placeholder-basic-gray mt-2 h-20 w-full focus:ring-0 resize-none" placeholder="Legenda" required ></textarea>
+                                class="bg-purplle border-none rounded-xl placeholder-basic-gray mt-2 h-20 w-full focus:ring-0 resize-none" placeholder="Legenda"  ></textarea>
                             </div>
 
                         </div>

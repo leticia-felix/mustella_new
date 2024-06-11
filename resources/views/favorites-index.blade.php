@@ -141,7 +141,7 @@
                 
                         
                 @if($favorites->isEmpty())
-                <p>Você não favoritou nenhum post ainda.</p>
+                <p class="text-white">Você ainda não favoritou nenhum post.</p>
                 @else
                 @foreach($favorites as $post)
 
@@ -152,10 +152,11 @@
                             <!-- circuloPerfil -->
                             <img class="w-10 h-10 rounded-full"src="https://ui-avatars.com/api/?name={{ $post->user->name }}&background=FC9A03&color=ffffff"  alt="Avatar">
                             <div class="flex">
-                                <div class="ml-2 text-white flex items-center">
-                                    {{$post->user->username}}
-                                </div>
-
+                                <a href="{{ route('user.profile', $post->user->id) }}">
+                                    <div class="ml-2 text-white">
+                                        {{$post->user->username}}
+                                    </div>
+                                </a>
 
 
                             </div>
@@ -166,11 +167,7 @@
                             <a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a>
                         </div>
                         
-                        <div class="flex justify-between">
-                            <p class="text-base php artisan storage:link text-orange">{{ $post->caption }}</p>
-                            
-                
-                        </div>
+                     
 
 
 

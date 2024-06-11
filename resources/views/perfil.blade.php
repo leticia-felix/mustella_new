@@ -79,7 +79,7 @@
                                         
                                         <div class="flex">
                                             <div class="ml-2 text-white flex items-center">
-                                                {{$post->user->name}}
+                                                {{$post->user->username}}
                                             </div>
 
 
@@ -122,11 +122,7 @@
                                         <a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a>
                                     </div>
                                     
-                                    <div class="flex justify-between">
-                                        <p class="text-base php artisan storage:link text-orange">{{ $post->caption }}</p>
-                                        
-                            
-                                    </div>
+                                    
 
 
 
